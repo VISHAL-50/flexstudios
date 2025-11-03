@@ -87,4 +87,13 @@
                 closePopup();
             });
         });
+        // Add this to the end of script.js (before the closing </script> or at the bottom)
+
+// Open popup on CTA button clicks
+document.querySelectorAll('.cta-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const popup = document.getElementById('popup');
+        popup.classList.add('show');
+    });
+});
    
