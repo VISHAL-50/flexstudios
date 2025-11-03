@@ -1077,4 +1077,125 @@
             .project-image { height: 200px; }
             .project-content { padding: 2rem; }
         }
-   
+   /* NEW: Trusted By Section - Infinite Scrolling Logos */
+.clients {
+    padding: 4rem 2rem; /* Reduced padding for flow */
+    background: var(--glass);
+    border-radius: 36px;
+    backdrop-filter: blur(20px);
+    margin: 0 auto 3rem;
+    max-width: 1200px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.clients .section-title {
+    margin-bottom: 3rem;
+}
+
+.clients-track {
+    display: flex;
+    width: max-content; /* Allows overflow for scroll */
+    animation: scroll-left 30s linear infinite; /* Infinite left-to-right (negative translateX for LTR) */
+    gap: 4rem;
+    align-items: center;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* 50% because of duplicated logos */
+}
+
+.clients-track:hover {
+    animation-play-state: paused; /* Pause on hover for interaction */
+}
+
+.client-logo {
+    height: 50px; /* Smaller base height */
+    width: auto; /* Auto width to maintain aspect ratio */
+    max-width: 150px; /* Prevent overly wide logos */
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    object-fit: contain; /* No cropping - fits within bounds */
+    filter: grayscale(100%);
+}
+
+.client-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+/* Responsive small heights */
+@media (max-width: 768px) {
+    .client-logo { height: 40px; max-width: 120px; }
+}
+
+@media (max-width: 480px) {
+    .client-logo { height: 35px; max-width: 100px; }
+}
+
+/* Ensure seamless infinite loop (existing, but tweak duration for smoothness) */
+.clients-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-left 40s linear infinite; /* Adjusted duration for slower, smoother loop */
+    gap: 3rem; /* Balanced gap */
+    align-items: center;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Moves exactly one full set width */
+}
+
+/* Background Animation - More Subtle */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.02;
+    animation: morph 40s infinite ease-in-out;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-gradient);
+    top: -50px;
+    left: -50px;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: var(--accent-gradient);
+    bottom: -25px;
+    right: -25px;
+    animation-delay: -15s;
+}
+
+.blob-3 {
+    width: 280px;
+    height: 280px;
+    background: var(--accent-gradient);
+    top: 75%;
+    right: 15%;
+    animation-delay: -25s;
+}
+
+@keyframes morph {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    33% { transform: scale(1.02) rotate(120deg); }
+    66% { transform: scale(0.98) rotate(240deg); }
+}
